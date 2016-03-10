@@ -1,5 +1,7 @@
 <?php
 
+use \Rych\Random\Random;
+
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -10,8 +12,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-
 
 Route::group(['middleware' => ['web']], function () {
 
@@ -26,12 +26,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/book/{id}', 'BookController@getShow');
 	
 	Route::get('/practice', function() {
-		
-		echo 'app.url: '.config('app.url');
-		echo '<br>app.env: '.config('app.env');
-		
-		return '';
-		
+
+		$random = new Random();
+    		return $random->getRandomString(8);		
 	});
 });
 
